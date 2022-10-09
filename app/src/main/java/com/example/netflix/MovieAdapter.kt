@@ -3,11 +3,11 @@ package com.example.netflix
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflix.model.Movie
 
-class MainAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MainViewHolder>(){
+class MovieAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MainViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
@@ -26,7 +26,10 @@ class MainAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MainViewHolde
 }
     class MainViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         fun bind(movie: Movie){
-            val txtTest : TextView = itemView.findViewById(R.id.textView)
-            txtTest.text = movie.coverUrl
+            val imageCover : ImageView = itemView.findViewById(R.id.imgCover)
+
+            /*
+            imageCover.setImageResource(movie.coverUrl)
+            */
         }
     }
