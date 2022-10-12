@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflix.model.Movie
 
-class MovieAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MainViewHolder>(){
+class MovieAdapter(val movies: List<Movie>, @LayoutRes val layoutId: Int) :
+    RecyclerView.Adapter<MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return MainViewHolder(view)
     }
 
@@ -24,12 +26,13 @@ class MovieAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MainViewHold
     }
 
 }
-    class MainViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        fun bind(movie: Movie){
-            val imageCover : ImageView = itemView.findViewById(R.id.imgCover)
 
-            /*
-            imageCover.setImageResource(movie.coverUrl)
-            */
-        }
+class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun bind(movie: Movie) {
+        val imageCover: ImageView = itemView.findViewById(R.id.imgCover)
+
+        /*
+        imageCover.setImageResource(movie.coverUrl)
+        */
     }
+}
