@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflix.model.Category
 import com.example.netflix.model.Movie
+import com.example.netflix.util.CategoryTask
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,13 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         val categories = mutableListOf<Category>()
 
-
-
-
-
         recycler = findViewById(R.id.rvMain)
         recycler.adapter = CategorieAdapter(categories)
         recycler.layoutManager = LinearLayoutManager(this)
+
+        CategoryTask().execute("https://api.tiagoaguiar.co/netflixapp/home?apiKey=72a9a30a-a43c-46b8-a128-34e9beea0d6c")
 
     }
 
