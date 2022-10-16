@@ -1,9 +1,11 @@
 package com.example.netflix
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflix.model.Category
@@ -24,15 +26,25 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback  {
 
         recycler = findViewById(R.id.rvMain)
 
-        adapter = CategorieAdapter(categories)
+
+        adapter = CategorieAdapter(categories) { id ->
+            val intent = Intent(this, MovieActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
+
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
+
+
 
         CategoryTask(this).execute("https://api.tiagoaguiar.co/netflixapp/home?apiKey=72a9a30a-a43c-46b8-a128-34e9beea0d6c")
 
     }
 
 
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResult(categories: List<Category>) {
         Log.e("teste", "ola")
         this.categories.clear()
